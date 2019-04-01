@@ -1,0 +1,33 @@
+body{
+    background-image: url("../images/stars.jpeg");
+    background-size: cover;
+}
+h1{ 
+    text-align: center;
+    color: goldenrod;
+    font-size:54px;
+}
+h2{
+    text-align: center;
+    color: goldenrod;
+    font-size: 36px;
+}
+#titlepage{
+    margin-top: 200px;
+    
+}
+#characters{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 200px;
+}
+.charcard{
+    border: solid 1px #ffffff;
+    width: 10%;
+    height: 100%;
+    overflow: hidden;
+}
+img{
+    width: 200px;
+}
