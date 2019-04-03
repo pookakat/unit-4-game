@@ -12,11 +12,7 @@ $(".sith").click(function(){
     barMove();
     titleFade();
     document.body.style.backgroundImage = "url('assets/images/sith.jpg')";
-    $("body").css({
-        "max-width" : "100%",
-        "max-height": "100%",
-        "background-size": "default",
-    });
+    document.body.style.backgroundSize = "initial";
     characterClass="sith";
     changeEnemies();
 });
