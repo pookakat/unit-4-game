@@ -3,6 +3,7 @@ let characterClass="neutral";
 $(".jedi").click(function(){
     barMove();
     titleFade();
+    document.body.style.backgroundImage = "url('assets/images/jedibkg.jpg')";
     characterClass="jedi";
     changeEnemies();
 });
@@ -10,6 +11,12 @@ $(".jedi").click(function(){
 $(".sith").click(function(){
     barMove();
     titleFade();
+    document.body.style.backgroundImage = "url('assets/images/sith.jpg')";
+    $("body").css({
+        "max-width" : "100%",
+        "max-height": "100%",
+        "background-size": "default",
+    });
     characterClass="sith";
     changeEnemies();
 });

@@ -1,5 +1,6 @@
 body{
     background-image: url("../images/stars.jpeg");
+    overflow: hidden;
     background-size: cover;
 }
 .orangewords{
