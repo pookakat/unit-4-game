@@ -1,21 +1,24 @@
 let characterClass="neutral";
 
-$(".jedi").click(function(){
+$(".selection").click(function(){
+    whatAlignment();
     barMove();
     titleFade();
-    document.body.style.backgroundImage = "url('assets/images/jedibkg.jpg')";
-    characterClass="jedi";
-    changeEnemies();
-});
+})
 
-$(".sith").click(function(){
-    barMove();
-    titleFade();
-    document.body.style.backgroundImage = "url('assets/images/sith.jpg')";
-    document.body.style.backgroundSize = "initial";
-    characterClass="sith";
+function whatAlignment(){
+    if ($(event.currentTarget).hasClass("jedi")){
+        document.body.style.backgroundImage = "url('assets/images/jedibkg.jpg')";
+        characterClass="jedi";
+    }
+    else if($(event.currentTarget).hasClass("sith")){
+        document.body.style.backgroundImage = "url('assets/images/sith.jpg')";
+        document.body.style.backgroundSize = "initial";
+        characterClass="sith";
+    }
+    $(".selection").removeClass("jedi sith");
     changeEnemies();
-});
+};
 
 function barMove(){
     $('#charBar').animate({
@@ -33,17 +36,11 @@ function fixFlex(){
 }
 
 function titleFade(){
-    $('.wordCard').animate({
-        opacity: 0,
-    });
-    $('#titlePage').animate({
-        height: "1px",
-        margin: "1px",
-    });
+    $('.wordCard').fadeToggle(100);
+    $('.nowFight').fadeToggle(100);
 }
 
 function changeEnemies(){
-    console.log(characterClass);
     if (characterClass==="jedi"){
         $(".one").attr('src', 'assets/images/vader.jpg');
         $(".charOne").text("Darth Vader");
