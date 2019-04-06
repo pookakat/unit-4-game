@@ -7,6 +7,9 @@ body{
     background-image: url("../images/stars.jpeg");
     overflow: hidden;
     background-size: auto 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #000000;
 }
 .orangewords{
     color: goldenrod;

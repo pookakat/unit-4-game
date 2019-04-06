@@ -25,8 +25,9 @@ $("#characters").on('click', '.fighting', function(event){
     $('#fightingAgainst').show();
     var $badguy = $(event.currentTarget);
     var fighterImg = $badguy.children().attr('src');
+    var fighterTitle = $badguy.children().text();
     $("<img src='" + fighterImg + "' />").prependTo('#fightingAgainst');
-    $('#fightingAgainst p').html($badguy.children().find('p').html());
+    $('#fightingAgainst p').html(fighterTitle);
     if ($(event.currentTarget).hasClass('npc')) {
         $('#fightingAgainst').addClass('npc');
     }
@@ -55,7 +56,7 @@ function whatAlignment(align){
         document.body.style.backgroundImage = "url('assets/images/sith.jpg')";
         characterClass="sith";
         $('#fightingAs .title').addClass('redwords');
-        $('#fightingAs .title').addClass('bluewords');
+        $('#fightingAgainst .title').addClass('bluewords');
         $('#charInfo .vs').addClass('redwords');
         barMove();
         titleFade();
