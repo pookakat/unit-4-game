@@ -10,35 +10,66 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <div id="titlePage" class="wordCard">
-        <h1 class="orangewords">Star Wars</h1>
-        <h2 class="orangewords">The RPG</h2>
-    </div>
-    <div id="charBar">
-        <ul>
-            <li>
-                <h2 class="wordCard orangewords">Choose your character:</h2>
-                <h2 class="nowFight">Pick a foe!</h2>
-            </li>
-            <li><div id="characters">
-                    <div id="cardOne" class="charcard jedi selection">
-                        <img src="assets/images/obiwan.jpg" class="one" />
-                        <div class="title orangewords charOne"><p>Obi Wan Kenobi</p></div>
-                    </div>
-                    <div id="cardTwo" class="charcard jedi selection">
-                        <img src="assets/images/lukeskywalker.jpg" class="two"/>
-                        <div class="title orangewords charTwo"><p>Luke Skywalker</p></div>
-                    </div>
-                    <div id="cardThree" class="charcard sith selection">
-                        <img src="assets/images/vader.jpg" class="three"/>
-                        <div class="title orangewords charThree"><p>Darth Vader</p></div>
-                    </div>
-                    <div id="cardFour"  class="charcard sith selection">
-                        <img src="assets/images/maul.jpg" class="four"/>
-                        <div class="title orangewords charFour"><p>Darth Maul</p></div>
-                    </div>
-            </div></li>
-        </ul>
+    <div id="page">
+        <div id="titlePage" class="wordCard">
+            <h1 class="orangewords">Star Wars</h1>
+            <h2 class="orangewords">The RPG</h2>
+        </div>
+        <div id="charBar">
+            <ul>
+                <li>
+                    <h2 class="wordCard orangewords">Choose your character:</h2>
+                    <h2 class="nowFight">Pick a foe!</h2>
+                </li>
+                <li><div id="characters">
+                        <div id="cardOne" class="charcard jedi selection npc">
+                            <img src="assets/images/obiwan.jpg" class="one" />
+                            <div class="title orangewords charOne"><p>Obi Wan Kenobi</p></div>
+                        </div>
+                        <div id="cardTwo" class="charcard jedi selection npc">
+                            <img src="assets/images/lukeskywalker.jpg" class="two"/>
+                            <div class="title orangewords charTwo"><p>Luke Skywalker</p></div>
+                        </div>
+                        <div id="cardThree" class="charcard sith selection boss">
+                            <img src="assets/images/vader.jpg" class="three"/>
+                            <div class="title orangewords charThree"><p>Darth Vader</p></div>
+                        </div>
+                        <div id="cardFour"  class="charcard sith selection crunchy">
+                            <img src="assets/images/maul.jpg" class="four"/>
+                            <div class="title orangewords charFour"><p>Darth Maul</p></div>
+                        </div>
+                </div></li>
+            </ul>
+        </div>
+        <div id="fightWindow">
+            <div id="charInfo">
+                <div id="fightingAs" class="charcard">
+                    <div class="title orangewords"><p>Me</p></div>
+                </div>
+                <div class="vs">
+                    <h1>VS</h1>
+                </div>
+                <div id="fightingAgainst" class="charcard">
+                    <div id = "foe" class="title orangewords"><p></p></div>
+                </div>
+            <div id="statsWindow">
+                <div id="yourStats">
+
+                </div>
+                <div id="attackerStats">
+
+                </div>
+            </div>
+            <div id="attackButton"></div>
+            <div id="fight">
+                <action>
+
+                </action>    
+            </div>
+            <div id="winOrLose">
+
+            </div>
+        </div>
     </div>
     <script src="assets/javascript/game.js"></script>
 </body>
