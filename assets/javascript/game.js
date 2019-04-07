@@ -1,5 +1,7 @@
 let characterClass="neutral";
 let stat;
+let foeStats={};
+let badguy;
 
 $("#characters").on('click',  '.selection', function(event){
     $('#characters').children().removeClass('selection');
@@ -19,25 +21,63 @@ $("#characters").on('click',  '.selection', function(event){
     }
 });
 
-
 $("#characters").on('click', '.fighting', function(event){
     $('#characters').children().removeClass('fighting');
     $('#fightingAgainst').show();
-    var $badguy = $(event.currentTarget);
+    let $badguy = $(event.currentTarget);
     var fighterImg = $badguy.children().attr('src');
     var fighterTitle = $badguy.children().text();
     $("<img src='" + fighterImg + "' />").prependTo('#fightingAgainst');
     $('#fightingAgainst p').html(fighterTitle);
-    if ($(event.currentTarget).hasClass('npc')) {
+    if ($badguy.hasClass('npc')) {
         $('#fightingAgainst').addClass('npc');
     }
-    else if ($(event.currentTarget).hasClass('.boss')) {
+    else if ($badguy.hasClass('boss')) {
         $('#fightingAgainst').addClass('boss');
     }
-    else if ($(event.currentTarget).hasClass('.crunchy')) {
+    else if ($badguy.hasClass('crunchy')) {
         $('#fightingAgainst').addClass('crunchy');
     }
+    $('#lastThree').show();
+    badguyStats($('#fightingAgainst'));
+    badguy=$badguy;
 });
+
+function badguyStats($selectedFoe){
+    if ($selectedFoe.hasClass('crunchy')){
+        foeStats = crunchyStats;
+        foeStats.foeHealth=foeStats.crunchyHealth;
+        foeStats.foeAttack=foeStats.crunchyAttack;
+        foeStats.foeCounter=foeStats.crunchyCounter;
+        delete foeStats.crunchyCounter;
+        delete foeStats.crunchyAttack;
+        delete foeStats.crunchyHealth;
+    }
+    else if ($selectedFoe.hasClass('npc')){
+        foeStats = npcStats;
+        foeStats.foeHealth=foeStats.npcHealth;
+        foeStats.foeAttack=foeStats.npcAttack;
+        foeStats.foeCounter=foeStats.npcCounter;
+        delete foeStats.npcCounter;
+        delete foeStats.npcAttack;
+        delete foeStats.npcHealth;
+        npcStats={
+            npcHealth : 12 + statsMath(3),
+            npcAttack : 6 + statsMath(2),
+            npcCounter: 3 + statsMath(1),
+        };
+    }
+    else if ($selectedFoe.hasClass('boss')){
+        foeStats = bossStats;
+        foeStats.foeHealth=foeStats.bossHealth;
+        foeStats.foeAttack=foeStats.bossAttack;
+        foeStats.foeCounter=foeStats.bossCounter;
+        delete foeStats.bossCounter;
+        delete foeStats.bossAttack;
+        delete foeStats.bossHealth;
+    }
+    return foeStats;
+};
 
 function whatAlignment(align){
     $('#fightingAs .title').removeClass('orangewords');
@@ -151,6 +191,98 @@ bossStats={
     bossAttack : 6 + statsMath(3),
     bossCounter: 3 + statsMath(2),
 };
+
+
+$("#attack").on('click', function(event){
+    if (foeStats.foeHealth > 0){
+        var myAction=action(playerStats.myAttack);
+        var actionStrength=strength(myAction);
+        $('#action').append('<p> You attack ' + actionStrength + '</p>');
+        var foeAction=action(foeStats.foeCounter);
+        var foeActionStrength=strength(foeAction);
+        $('#action').append('<p> The enemy tries to block' + actionStrength + '</p>');
+        if (actionStrength > foeActionStrength){
+            foeStats.foeHealth--;
+            $('#action').append('<p> The enemy is wounded! </p>');
+        }
+        else{
+            $('#action').append('<p> The enemy blocked you! </p>');
+        }
+        var foeAction=action(foeStats.foeAttack);
+        var foeActionStrength=strength(foeAction);
+        $('#action').append('<p> The foe attacks ' + actionStrength + '</p>');
+        var myAction=action(playerStats.myCounter);
+        var actionStrength=strength(myAction);
+        $('#action').append('<p> You try to block ' + actionStrength + '</p>');
+        if (actionStrength < foeActionStrength){
+            playerStats.myHealth--;
+            $('#action').append('<p> The enemy wounds you! </p>');
+        }
+        else{
+            $('#action').append('<p> You blocked the enemy! </p>');
+        }
+    }
+    else{
+        $('#action').text('Your enemy is dead. Pick another!');
+
+    }
+    healthCheck();
+    $('#characters').children().addClass('fighting');
+    badguy.css({
+        'opacity': 0.2,
+    });
+    console.log(badguy);
+});
+
+function action(actionStat){
+    return rollDie(actionStat);
+};
+
+function strength(actionResult){
+    if (actionResult < 3){
+        return ('pathetically');
+    }
+    else if (actionResult > 3 && actionResult < 5){
+        return ('weakly');
+    }
+    else if (actionResult > 5 && actionResult < 7){
+        return ('with adequate strength');
+    }
+    else {
+        return ('powerfully');
+    }
+};
+
+function healthCheck(health){
+    if (health === 0){
+        winOrLose('lose');
+    }
+};
+
+function winOrLose(endGame){
+    $('.nowFight').hide();
+    $('#winOrLose').show();
+    if (endGame === 'loss'){
+        $('#winOrLose').addClass('loss');
+        $('#winOrLose').text('You lose!');
+    }
+    else if (endGame === 'win'){
+        $('#winOrLose').addClass('win');
+        $('#winOrLose').text('You win!');
+    }
+    colorWords(characterClass);
+}
+
+function colorWords(force){
+    if (force === 'jedi'){
+        $('.win').addClass('bluewords');
+        $('.loss').addClass('redwords');
+    }
+    else{
+        $('.loss').addClass('bluewords');
+        $('.win').addClass('redwords');
+    }
+}
 
 console.log(playerStats);
 console.log(npcStats);

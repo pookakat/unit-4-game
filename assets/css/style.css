@@ -31,6 +31,11 @@ h2{
     text-align: center;
     font-size: 36px;
 }
+#winOrLose{
+    display:none;
+    text-align: center;
+}
+
 #titlePage{
     margin-top: 200px;    
 }
@@ -91,13 +96,57 @@ img{
 }
 
 #fightingAs{
-    width: 15%;
+    width: 20%;
 }
 
 #fightingAgainst{
-    width: 15%;
+    width: 20%;
 }
 
 .vs{
-    width: 5%;
+    width: 10%;
+}
+
+#lastThree{
+    display: none;
+    align-content: center;
+}
+
+#fightWindow{
+    display:flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 10px;
+    justify-content: center;
+}
+
+#statsWindow{
+    display:flex;
+    flex-direction: row;
+    margin: auto;
+    margin-top: 10px;
+    justify-content: center;
+    height: 400px;
+}
+.aDifferentFightWindow{
+    min-width: 25%;
+    height: 100%;
+    background-color: #000000;
+    color: goldenrod;
+    border: 2px solid #fefefe;
+}
+
+#attack{
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+#action{
+    margin-top: 20px;
 }
